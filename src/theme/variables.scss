@@ -30,13 +30,12 @@ $colors: (
   light:      #f4f4f4,
   dark:       #222
 );
-
+$newcolour: #367fa9;
+$toolbar-ios-background:($newcolour);
+$toolbar-md-background:($newcolour);
+$toolbar-wp-background:($newcolour);
 .ios,.md{
-  ion-nav{
-    ion-header{
-      background-color: #367fa9;
-    }
-  }
+
 
 }
 

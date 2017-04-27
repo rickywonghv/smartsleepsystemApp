@@ -44,6 +44,11 @@ export class HomePage {
     toast.present();
   }
 
+  public reload(){
+    this.getStatus();
+    this.getStatus();
+  }
+
   public getStatus(){
     return this.service.getStatus().subscribe(res=>this.statusJson(res.json()),err=>this.presentToast("Server End Point Error"));
   }

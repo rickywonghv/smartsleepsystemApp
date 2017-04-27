@@ -9,7 +9,7 @@ import {ServerPage} from "../server/server";
   providers:[HomePage,ServerPage]
 })
 export class TabsPage {
-
+  img="./icon/circuit.svg";
   tab1Root = HomePage;
   tab2Root = AboutPage;
   tab3Root = ServerPage;
