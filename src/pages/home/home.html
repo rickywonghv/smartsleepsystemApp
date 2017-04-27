@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Smart Sleep System</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list no-lines>
+    <ion-item-sliding>
+      <ion-item>
+        <ion-col col-12><h1>Temperature: {{temperature}}</h1></ion-col>
+      </ion-item>
+    </ion-item-sliding>
+
+    <ion-item-sliding>
+      <ion-item>
+        <ion-col col-6><h1>Humidity: {{humidity}}</h1></ion-col>
+      </ion-item>
+    </ion-item-sliding>
+
+    <ion-item-sliding>
+      <ion-item>
+        <ion-col col-6><h1>CO<sub>2</sub> PPM: {{air}}</h1></ion-col>
+      </ion-item>
+    </ion-item-sliding>
+
+    <ion-item-sliding>
+      <ion-item>
+        <ion-label><h2>Air-Con</h2></ion-label>
+      <ion-toggle [(ngModel)]="airconSw" (click)="swSet('aircon',airconSw)"></ion-toggle>
+      </ion-item>
+    </ion-item-sliding>
+    <ion-item-sliding>
+      <ion-item>
+      <ion-label><h2>Fan</h2></ion-label>
+      <ion-toggle [(ngModel)]="fanSw" (click)="swSet('fan',fanSw)"></ion-toggle>
+      </ion-item>
+    </ion-item-sliding>
+    <ion-item-sliding>
+      <ion-item>
+      <ion-label><h2>Heater</h2></ion-label>
+      <ion-toggle [(ngModel)]="heaterSw" (click)="swSet('heater',heaterSw)"></ion-toggle>
+      </ion-item>
+    </ion-item-sliding>
+
+  </ion-list>
+
+</ion-content>
