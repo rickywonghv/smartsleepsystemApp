@@ -46,7 +46,7 @@ export class HomePage {
 
   public reload(){
     this.getStatus();
-    this.getStatus();
+    this.getSwitch();
   }
 
   public getStatus(){

@@ -20,16 +20,19 @@ export class AppService {
   public initSetEndPoint(){
     this.storage.ready().then(() => {
       this.storage.get('endpoint').then((val) => {
-        this.baseUrl="http://"+val+":"+this.port;
-        this.getStatus ();
-        this.getSw();
+        this.baseUrl="http://"+val;
+
+          this.getStatus ();
+          this.getSw();
+
+
       })
     });
   }
 
   public setEndPoint(endPoint:string){
     //return this.url=endPoint;
-    this.baseUrl="http://"+endPoint+":"+this.port;
+    this.baseUrl="http://"+endPoint;
     this.initSetEndPoint();
   }
 

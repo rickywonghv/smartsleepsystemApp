@@ -7,25 +7,31 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Server</ion-title>
+    <ion-title><img item-left src="assets/icon/circuit.svg" width="30" height="30"> Server</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      Current Server: {{endpoint}}
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>Server End Point / IP</ion-label>
-      <ion-input [(ngModel)]="endpointInput"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary" floating>Server Port</ion-label>
-      <ion-input [(ngModel)]="portInput" type="number"></ion-input>
-    </ion-item>
-    <button ion-button round (click)="setEndPoint()">Save</button>
+
+  <ion-list no-lines>
+    <ion-item-sliding>
+      <ion-item>
+        Current Server: {{endpoint}}
+      </ion-item>
+    </ion-item-sliding>
+    <ion-item-sliding >
+      <ion-item>
+        <ion-label color="primary" floating>Enter Server End Point / IP with Port</ion-label>
+        <ion-input [(ngModel)]="endpointInput"></ion-input>
+      </ion-item>
+
+    </ion-item-sliding>
   </ion-list>
+  <button ion-button (click)="setEndPoint()">Save</button>
+  <p>
+    End Point Example:
+    127.0.0.1:300
+  </p>
 </ion-content>

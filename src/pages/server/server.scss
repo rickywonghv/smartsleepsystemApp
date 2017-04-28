@@ -1,3 +1,26 @@
-page-server {
+.ios, .md {
+
+  page-server{
+
+    ion-item {
+      background-color: #fff;
+      border-bottom: none !important;
+      padding: 10px;
+    }
+
+    ion-img{
+      background-color: rgba(255, 255, 255, 0);
+    }
+
+    ion-label {
+      white-space: normal;
+    }
+
+    ion-item-sliding {
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+
+  }
 
 }

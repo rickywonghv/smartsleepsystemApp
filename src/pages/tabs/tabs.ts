@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 import { AboutPage } from '../about/about';
 import { HomePage } from '../home/home';
 import {ServerPage} from "../server/server";
+import {AppService} from "../../app/app.service";
 
 @Component({
   templateUrl: 'tabs.html',
@@ -14,7 +16,7 @@ export class TabsPage {
   tab2Root = AboutPage;
   tab3Root = ServerPage;
 
-  constructor() {
-
+  constructor(public service:AppService,public storage:Storage) {
+    service.initSetEndPoint();
   }
 }

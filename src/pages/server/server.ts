@@ -30,9 +30,10 @@ export class ServerPage {
   constructor(public navCtrl: NavController,public storageCon: Storage, public homepage:HomePage,private service:AppService) {
 
     this.initSetup(this.storageCon,this.homepage);
+    this.endpointInput=this.endpoint;
   }
 
-  private initSetup(storageCon,homepage){
+  public initSetup(storageCon,homepage){
     this.home=homepage;
     this.storage=storageCon;
     this.storage.ready().then(() => {
@@ -45,7 +46,8 @@ export class ServerPage {
           this.endpoint=val;
           this.home.presentToast(this.msg+val);
         }
-      })
+      });
+
     });
     this.endpointInput=this.endpoint;
   }
