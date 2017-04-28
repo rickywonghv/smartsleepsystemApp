@@ -1,6 +1,7 @@
 <ion-header>
   <ion-navbar newcolour>
-    <ion-title newcolour>Smart Sleep System</ion-title>
+
+    <ion-title newcolour><img item-left src="assets/icon/logo.svg" width="30" height="30"> Smart Sleep System</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="reload()">
         <ion-icon name="refresh"></ion-icon>
@@ -13,13 +14,19 @@
   <ion-list no-lines>
     <ion-item-sliding>
       <ion-item>
-        <ion-col col-12><h1>Temperature: {{temperature}}</h1></ion-col>
+        <ion-thumbnail item-left>
+          <img src="assets/icon/thermometer.svg">
+        </ion-thumbnail>
+        <ion-col col-12><h1> Temperature: {{temperature}} <span *ngIf="temperature!=='Loading'">C</span></h1></ion-col>
       </ion-item>
     </ion-item-sliding>
 
     <ion-item-sliding>
       <ion-item>
-        <ion-col col-6><h1>Humidity: {{humidity}}</h1></ion-col>
+        <ion-thumbnail item-left>
+          <img src="assets/icon/rain.svg">
+        </ion-thumbnail>
+        <ion-col col-6><h1>Humidity: {{humidity}} <span *ngIf="humidity!=='Loading'">%</span></h1></ion-col>
       </ion-item>
     </ion-item-sliding>
 
@@ -31,20 +38,29 @@
 
     <ion-item-sliding>
       <ion-item>
-        <ion-label><h2>Air-Con</h2></ion-label>
-      <ion-toggle [(ngModel)]="airconSw" (click)="swSet('aircon',airconSw)"></ion-toggle>
+        <ion-thumbnail item-left>
+          <img src="assets/icon/air-conditioner.svg">
+        </ion-thumbnail>
+        <ion-label><h1>Air-Con</h1></ion-label>
+        <ion-toggle [(ngModel)]="airconSw" (click)="swSet('aircon',airconSw)"></ion-toggle>
       </ion-item>
     </ion-item-sliding>
     <ion-item-sliding>
       <ion-item>
-      <ion-label><h2>Fan</h2></ion-label>
-      <ion-toggle [(ngModel)]="fanSw" (click)="swSet('fan',fanSw)"></ion-toggle>
+        <ion-thumbnail item-left>
+          <img src="assets/icon/fan.svg">
+        </ion-thumbnail>
+        <ion-label> <h1> Fan</h1></ion-label>
+        <ion-toggle color="secondary" [(ngModel)]="fanSw" (click)="swSet('fan',fanSw)"></ion-toggle>
       </ion-item>
     </ion-item-sliding>
     <ion-item-sliding>
       <ion-item>
-      <ion-label><h2>Heater</h2></ion-label>
-      <ion-toggle [(ngModel)]="heaterSw" (click)="swSet('heater',heaterSw)"></ion-toggle>
+        <ion-thumbnail item-left>
+          <img src="assets/icon/heater.svg">
+        </ion-thumbnail>
+        <ion-label><h1>Heater</h1></ion-label>
+        <ion-toggle color="danger" [(ngModel)]="heaterSw" (click)="swSet('heater',heaterSw)"></ion-toggle>
       </ion-item>
     </ion-item-sliding>
 
