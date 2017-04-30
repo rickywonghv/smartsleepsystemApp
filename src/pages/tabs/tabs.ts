@@ -19,4 +19,5 @@ export class TabsPage {
   constructor(public service:AppService,public storage:Storage) {
     service.initSetEndPoint();
   }
+
 }

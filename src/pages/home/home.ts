@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import {NavController, ToastController} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {AlertController, NavController, ToastController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {AppService} from "../../app/app.service";
+import {ServerPage} from "../server/server";
 
 
 @Component({
@@ -16,9 +17,9 @@ export class HomePage {
   public heaterSw:boolean;
   public windowSw:boolean;
   public air;
+  public alert=1;
 
-
-  constructor(public navCtrl: NavController,public service:AppService,private toastCtrl: ToastController,public storage:Storage) {
+  constructor(public navCtrl: NavController,public storage:Storage,public service:AppService,private toastCtrl: ToastController,private alertCtrl: AlertController) {
     service.initSetEndPoint();
     this.temperature="Loading";
     this.humidity="Loading";
@@ -28,6 +29,31 @@ export class HomePage {
     new Promise(resolve => {
       setTimeout(() => resolve(this.getSwitch()), 15000);
     });
+  }
+
+  public presentConfirm() {
+    let alert = this.alertCtrl.create({
+      title: 'Server Error',
+      message: 'Server Not Found! Do you want to reset End Point?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+            this.alert=0;
+          }
+        },
+        {
+          text: 'Reset',
+          handler: () => {
+            //console.log('Buy clicked');
+            this.navCtrl.push(ServerPage);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   public presentToast(msg:string) {
@@ -50,7 +76,7 @@ export class HomePage {
   }
 
   public getStatus(){
-    return this.service.getStatus().subscribe(res=>this.statusJson(res.json()),err=>this.presentToast("Server End Point Error"));
+    return this.service.getStatus().subscribe(res=>this.statusJson(res.json()),err=>this.endPointError());
   }
 
   public getSwitch(){
@@ -59,6 +85,14 @@ export class HomePage {
 
   public swSet(device,sw:boolean){
     this.service.manualSwitch(device,sw).subscribe(res=>this.swSuccess(device,sw),error=>this.swError(device,error));
+  }
+
+  public endPointError(){
+    if(this.alert){
+      this.presentConfirm();
+    }else{
+      this.presentToast("Server End Point Error")
+    }
   }
 
   public swError(device,err){

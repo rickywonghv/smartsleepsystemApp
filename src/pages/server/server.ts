@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {  NavController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {  NavController,ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {HomePage} from "../home/home";
 import {AppService} from "../../app/app.service";
@@ -13,24 +13,25 @@ import {AppService} from "../../app/app.service";
 
 @Component({
   selector: 'page-server',
-  templateUrl: 'server.html',
-  providers:[HomePage]
+  templateUrl: 'server.html'
 })
 export class ServerPage {
   public endpoint:string;
   private defaultEndpoint:string="127.0.0.1";
   private home;
   public storage;
+  private homepage:HomePage;
 
 
   msg:string="End Point set to ";
   endpointInput:string;
   portInput:string;
 
-  constructor(public navCtrl: NavController,public storageCon: Storage, public homepage:HomePage,private service:AppService) {
+  constructor(public navCtrl: NavController,private storageCon: Storage,private toastCtrl: ToastController,private service:AppService) {
 
     this.initSetup(this.storageCon,this.homepage);
     this.endpointInput=this.endpoint;
+
   }
 
   public initSetup(storageCon,homepage){
@@ -41,15 +42,29 @@ export class ServerPage {
         if(val==""||val==null){
           this.storage.set('endpoint',this.defaultEndpoint);
           this.endpoint=this.defaultEndpoint;
-          this.home.presentToast(this.msg+this.defaultEndpoint);
+          this.presentToast(this.msg+this.defaultEndpoint);
         }else{
           this.endpoint=val;
-          this.home.presentToast(this.msg+val);
+          this.presentToast(this.msg+val);
         }
       });
 
     });
     this.endpointInput=this.endpoint;
+  }
+
+  public presentToast(msg:string) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
   }
 
 
@@ -62,7 +77,7 @@ export class ServerPage {
       this.storage.set('endpoint',this.endpointInput);
       this.service.setEndPoint(this.endpointInput);
       this.endpoint=this.endpointInput;
-      this.home.presentToast(this.msg+this.endpointInput);
+      this.presentToast(this.msg+this.endpointInput);
     }
 
   }
